@@ -1,0 +1,83 @@
+﻿@model ExamStore.Models.Question
+@{
+    ViewBag.Title = "Create";
+    
+    Layout = "~/Views/Question/_CreateQuestionLayout.cshtml";
+}
+
+
+<h2>Create</h2>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Category</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Query, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Query, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Query, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NumberOfOptions, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NumberOfOptions, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NumberOfOptions, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+        }
+   
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#createOptions').click(function () {
+                window.location = "/Option/Create?QuestionId="+@Model.Id;
+                //return false;
+            });
+        });
+
+        $(document).ready(function () {
+            $("#txtNumberOfOptions").keyup(function () {
+                var n = document.getElementById('txtNumberOfOptions').value;
+                // alert(n);
+                $('.option').remove();
+                createOptions($('#section-1'), n);
+            });
+        });
+
+        function createOptions(div, numberOfOptions) {
+            if (numberOfOptions > 10) {
+                alert("Options cannot be more than 10");
+
+                return;
+            }
+            for (var i = 0; i < numberOfOptions; i++) {
+                var textBox = '<div class="form-group option"><input type="text" name="Option[' + i + ']" value="" class="form-control" /></div>';
+                div.append(textBox);
+
+            }
+
+        }
+
+        //function sayNumber() {
+        //    var option = document.getElementById('txtNumberOfOptions').value;
+        //    alert(option);
+        //}
+    </script>

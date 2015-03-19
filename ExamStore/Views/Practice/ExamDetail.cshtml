@@ -1,0 +1,49 @@
+﻿
+
+@{
+    ViewBag.Title = "ExamDetail";
+}
+<script src="~/Content/Jquery.js"></script>
+<h2>ExamDetail</h2>
+
+<script type="text/javascript">
+    $(document).ready(
+        function () {
+            $("#btnSubmit").click(
+                function() {
+                    var recordToShow = $("#txtId").val();
+                    if (recordToShow!='') {
+                        $.post("/Practice/SendJSON/",{"Id" : recordToShow},function(data){
+                            if (data==null) {
+                                $("#lblData").text("Data not found");
+                            }
+                            else {
+                                $("#lblData").text(data.ExamCode);
+                                
+                                this.preventdefault();
+                                return false;
+                            }
+                        })
+                    }
+                }
+                );
+        }
+        );
+</script>
+
+<form class="form-horizontal" method="get">
+
+    <div class="form-group">
+        <input type="number" value="" id="txtId" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label class="form-label" id="lblData">
+
+        </label>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary" id="btnSubmit" type="submit">
+            Submit
+        </button>
+    </div>
+</form>

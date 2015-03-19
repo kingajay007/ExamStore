@@ -1,0 +1,19 @@
+﻿@model ExamStore.Models.Exam
+
+@{
+    ViewBag.Title = "SendJSON";
+}
+
+<h2>SendJSON</h2>
+
+<form class="form-horizontal" method="post" action="/Practice/SendJSON">
+    <div class="form-group">
+        <input type="number" value="" name="Id" class="form-control" />
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary form-control" type="submit">
+            Submit
+        </button>
+    </div>
+
+</form>

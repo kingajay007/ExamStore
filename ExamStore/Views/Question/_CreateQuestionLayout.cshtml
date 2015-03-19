@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "_CreateQuestionLayout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <hr />
+    <ul class="nav nav-tabs">
+        <li class="tablist active"><a data-toggle="tab">Section-1</a></li>
+        <li> <a data-toggle="tab">Section-2</a></li>
+        <li><a data-toggle="tab">Section-3</a></li>
+    </ul>
+
+    @RenderBody()
+</div>
+
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
